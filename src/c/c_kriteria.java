@@ -33,17 +33,21 @@ public class c_kriteria {
             Kriteria.getTambah().addActionListener(new btnListener("tambah"));
             Kriteria.getUbah().addActionListener(new btnListener("ubah"));
             Kriteria.getHapus().addActionListener(new btnListener("hapus"));
-            Kriteria.getAlternatif().addActionListener(new btnListener("kriteria"));
+            Kriteria.getAlternatif().addActionListener(new btnListener("alternatif"));
 
             Kriteria.getUbah().setEnabled(false);
             Kriteria.getHapus().setEnabled(true);
             
             Kriteria.getTbKriteria().setModel(model.bacaTabel());
+            
+            Kriteria.setVisible(true);
         } else if (view.equals("tambah_kriteria")) {
             TambahKriteria = new tambahKriteria();
             TambahKriteria.getTipePref().addActionListener(new btnListener("tipePref"));
             TambahKriteria.getBatal().addActionListener(new btnListener("batal"));
             TambahKriteria.getSimpan().addActionListener(new btnListener("simpan"));
+            
+            TambahKriteria.setVisible(true);
         }
     }
 

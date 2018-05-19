@@ -74,7 +74,7 @@ public class m_alternatif {
     }
 
     public boolean tambah(String nama, int nilai) {
-        String query = "INSERT INTO alternatif(id, nama, nilai) VALUES ('', ?, ?);";
+        String query = "INSERT INTO alternatif(nama, nilai) VALUES (?, ?);";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, nama);

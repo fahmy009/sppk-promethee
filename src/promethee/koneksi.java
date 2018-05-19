@@ -18,7 +18,7 @@ public class koneksi {
 
     public Connection con() {
         if (koneksi == null) {
-            String database = "promethee";
+            String database = "prom";
             String username = "root";
             String password = "";
             try {

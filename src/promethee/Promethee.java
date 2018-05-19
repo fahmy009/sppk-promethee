@@ -5,6 +5,8 @@
  */
 package promethee;
 
+import c.c_alternatif;
+
 /**
  *
  * @author ASUS
@@ -15,7 +17,7 @@ public class Promethee {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        new c_alternatif("alternatif");
     }
     
 }

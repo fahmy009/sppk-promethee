@@ -38,10 +38,14 @@ public class c_alternatif {
             Alternatif.getHapus().setEnabled(false);
 
             Alternatif.getTbAlternatif().setModel(model.bacaTabel());
+            
+            Alternatif.setVisible(true);
         } else if (view.equals("tambah_alternatif")) {
             tambahAlternatif = new tambahAlternatif();
             tambahAlternatif.getBatal().addActionListener(new btnListener("batal"));
             tambahAlternatif.getSimpan().addActionListener(new btnListener("simpan"));
+            
+            tambahAlternatif.setVisible(true);
         }
     }
 
@@ -94,6 +98,7 @@ public class c_alternatif {
                     } else {
                         JOptionPane.showMessageDialog(tambahAlternatif, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                    new c_alternatif("alternatif");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Belum Diimplementasikan!");

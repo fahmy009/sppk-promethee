@@ -26,8 +26,8 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         return hitungAkhir;
     }
 
-    public JButton getKembali() {
-        return kembali;
+    public JButton getAlternatif() {
+        return alternatif;
     }
 
     public JLabel getKriteria() {
@@ -75,7 +75,7 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         prev = new javax.swing.JButton();
         next = new javax.swing.JButton();
         tipeKriteria = new javax.swing.JLabel();
-        kembali = new javax.swing.JButton();
+        alternatif = new javax.swing.JButton();
         hitungAkhir = new javax.swing.JButton();
         prod1 = new javax.swing.JLabel();
         prod2 = new javax.swing.JLabel();
@@ -111,13 +111,13 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         tipeKriteria.setText("Label Tipe Kriteria");
         getContentPane().add(tipeKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, -1, -1));
 
-        kembali.setText("Kembali");
-        kembali.addActionListener(new java.awt.event.ActionListener() {
+        alternatif.setText("Alternatif");
+        alternatif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kembaliActionPerformed(evt);
+                alternatifActionPerformed(evt);
             }
         });
-        getContentPane().add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 56, -1, -1));
+        getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 56, -1, -1));
 
         hitungAkhir.setText("Lihat Hasil Perhitungan Akhir");
         getContentPane().add(hitungAkhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 56, -1, -1));
@@ -134,9 +134,9 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
+    private void alternatifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternatifActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kembaliActionPerformed
+    }//GEN-LAST:event_alternatifActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,9 +174,9 @@ public class hasilPerhitungan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton alternatif;
     private javax.swing.JButton hitungAkhir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton kembali;
     private javax.swing.JLabel kriteria;
     private javax.swing.JButton next;
     private javax.swing.JButton prev;

@@ -14,6 +14,8 @@ import m.Kriteria;
 import m.m_alternatif;
 import m.m_kriteria;
 import m.m_perhitungan;
+import v.hasilAkhir;
+import v.hasilPerhitungan;
 
 /**
  *
@@ -24,6 +26,9 @@ public class perhitungan {
     private m_kriteria model_kriteria;
     private m_alternatif model_alternatif;
     private m_perhitungan model_perhitungan;
+    
+    private hasilPerhitungan perhitungan;
+    private hasilAkhir akhir;
 
     private DefaultTableModel tabelPerhitungan[];
     private DefaultTableModel tabelTotalIndeksPreferensi1;
@@ -44,6 +49,14 @@ public class perhitungan {
 
         kriteria = model_kriteria.bacaKriteria();
         data1 = model_alternatif.bacaAlternatif();
+        
+        hitungPerKriteria();
+        hitungTotalIndeksPreferensi();
+        
+        perhitungan.setVisible(true);
+        akhir.setVisible(false);
+        
+        
     }
 
     private void hitungPerKriteria() {

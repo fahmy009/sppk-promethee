@@ -107,7 +107,7 @@ public class m_kriteria {
     }
 
     public boolean tambah(Kriteria k) {
-        String query = "INSERT INTO alternatif(id, namaKriteria, minmaks, bobot, tipePreferensi, parameterA, parameterB) VALUES ('', ?, ?, ?, ?,?, ?, ?);";
+        String query = "INSERT INTO alternatif(namaKriteria, minmaks, bobot, tipePreferensi, parameterA, parameterB) VALUES (?, ?, ?, ?,?, ?, ?);";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, k.getNamaKriteria());
