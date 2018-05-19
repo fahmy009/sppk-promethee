@@ -5,9 +5,13 @@
  */
 package c;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import m.Alternatif;
 import m.Kriteria;
+import m.m_alternatif;
 import m.m_kriteria;
 import m.m_perhitungan;
 
@@ -17,34 +21,142 @@ import m.m_perhitungan;
  */
 public class perhitungan {
 
-    private DefaultTableModel tabelPerhitungan[];
     private m_kriteria model_kriteria;
+    private m_alternatif model_alternatif;
     private m_perhitungan model_perhitungan;
+
+    private DefaultTableModel tabelPerhitungan[];
+    private DefaultTableModel tabelTotalIndeksPreferensi1;
+    private DefaultTableModel tabelTotalIndeksPreferensi2;
+    private DefaultTableModel tabelHasilAkhir;
+
     private int jumlahKriteria;
+
+    ArrayList<Kriteria> kriteria;
+    ArrayList<Alternatif> data1;
 
     public perhitungan() {
         model_kriteria = new m_kriteria();
+        model_alternatif = new m_alternatif();
         model_perhitungan = new m_perhitungan();
         jumlahKriteria = model_kriteria.getJumlahKriteria();
         tabelPerhitungan = new DefaultTableModel[jumlahKriteria];
+
+        kriteria = model_kriteria.bacaKriteria();
+        data1 = model_alternatif.bacaAlternatif();
     }
 
     private void hitungPerKriteria() {
-        ArrayList<Kriteria> data1 = model_kriteria.bacaKriteria();
-        ArrayList<Kriteria> data2 = model_kriteria.bacaKriteria();
-        
-        for (Kriteria kriteria : data1) {
-            for (Kriteria kriteria1 : data2) {
-                if (kriteria.getID() != kriteria1.getID()) {
-                    
+//        ArrayList<Alternatif> data2 = data1;
+
+        String namaKolom[] = {"A", "B", "Nilai A", "Nilai B", "Selisih(d)", "|d|", "P", "IP"};
+        int i = 0;
+
+        for (Kriteria perKriteria : kriteria) {
+
+            tabelPerhitungan[i] = new DefaultTableModel(null, namaKolom);
+
+            for (Alternatif a : data1) {
+                for (Alternatif b : data1) {
+                    if (a.getID() != b.getID()) {
+                        int selisihAbsolut = Math.abs(a.getNilai() - b.getNilai());
+                        int selisih = a.getNilai() - b.getNilai();
+
+                        double P = tipePreferensi(perKriteria.getTipePreferensi(), perKriteria.getParamP(), perKriteria.getParamQ(), selisihAbsolut);
+
+                        double IP = P * perKriteria.getBobot();
+                        IP = round(IP, 2);
+                        Object perBaris[] = {
+                            a.getNama(),
+                            b.getNama(),
+                            a.getNilai(),
+                            b.getNilai(),
+                            selisih,
+                            selisihAbsolut,
+                            P,
+                            IP
+                        };
+                        tabelPerhitungan[i].addRow(perBaris);
+                    }
                 }
             }
+            i++;
         }
     }
 
-    private double tipePreferensi(int tipe, int p, int q, int a, int b) {
+    private void hitungTotalIndeksPreferensi() {
+        String kolom1[] = {"A", "B", "Total Indeks Preferensi"};
+        tabelTotalIndeksPreferensi1 = new DefaultTableModel(null, kolom1);
+        double IP[] = new double[tabelPerhitungan[0].getRowCount()];
+
+        for (int i = 0; i < tabelPerhitungan.length; i++) {
+            for (int j = 0; j < tabelPerhitungan[i].getRowCount(); j++) {
+                IP[j] += Double.valueOf(tabelPerhitungan[i].getValueAt(j, 7).toString());
+            }
+        }
+        for (int i = 0; i < IP.length; i++) {
+            Object perBaris[] = new Object[3];
+            perBaris[0] = tabelPerhitungan[0].getValueAt(i, 0);
+            perBaris[1] = tabelPerhitungan[0].getValueAt(i, 1);
+            perBaris[2] = IP[i];
+            tabelTotalIndeksPreferensi1.addRow(perBaris);
+        }
+
+        ArrayList<String> kolom = new ArrayList<>();
+        kolom.add("Alternatif");
+        for (Alternatif alternatif : data1) {
+            String perKolom = alternatif.getNama();
+            kolom.add(perKolom);
+        }
+        kolom.add("Jumlah");
+        kolom.add("Leaving");
+        tabelTotalIndeksPreferensi2 = new DefaultTableModel(null, kolom.toArray());
+
+        for (int i = 0; i < data1.size(); i++) {
+            Object perBaris[] = new Object[1 + data1.size() + 2];
+            String namaBaris = data1.get(i).getNama();
+            perBaris[0] = namaBaris;
+            double jumlah = 0.0;
+            for (int j = 0; j < data1.size(); j++) {
+                String namaKolom = data1.get(j).getNama();
+                for (int k = 0; k < tabelTotalIndeksPreferensi1.getRowCount(); k++) {
+                    String a = tabelTotalIndeksPreferensi1.getValueAt(k, 0).toString();
+                    String b = tabelTotalIndeksPreferensi1.getValueAt(k, 1).toString();
+                    if (a.equalsIgnoreCase(namaBaris) && b.equalsIgnoreCase(namaKolom)) {
+                        perBaris[j + 1] = tabelTotalIndeksPreferensi1.getValueAt(k, 2).toString();
+                        jumlah += Double.valueOf(tabelTotalIndeksPreferensi1.getValueAt(k, 2).toString());
+                    }
+                }
+                perBaris[data1.size() + 1] = jumlah;
+                perBaris[data1.size() + 2] = jumlah / (data1.size() - 1);
+            }
+            tabelTotalIndeksPreferensi2.addRow(perBaris);
+        }
+
+        /**
+         * menghitung jumlah dan entering flow
+         */
+        Object barisJumlah[] = new Object[1 + data1.size() + 2];
+        Object barisEnteringFlow[] = new Object[1 + data1.size() + 2];
+        
+        barisJumlah[0] = "jumlah";
+        double jumlah2[] = new double[data1.size()];
+        for (int i = 0; i < tabelTotalIndeksPreferensi2.getRowCount(); i++) {
+            for (int j = 0; j < data1.size(); j++) {
+                jumlah2[j] += Double.valueOf(tabelTotalIndeksPreferensi2.getValueAt(i, j + 1).toString());
+            }
+        }
+        for (int i = 0; i < data1.size(); i++) {
+            barisJumlah[i + 1] = jumlah2[i];
+            double entering = jumlah2[i] / (data1.size() - 1);
+            barisEnteringFlow[i+1] = entering;
+        }
+        tabelTotalIndeksPreferensi2.addRow(barisJumlah);
+        tabelTotalIndeksPreferensi2.addRow(barisEnteringFlow);
+    }
+
+    private double tipePreferensi(int tipe, int p, int q, int selisih) {
         double hasil = 0.0;
-        int selisih = Math.abs(a - b);
 
         /**
          * 1 usual (umum, jarang digunakan) 2 linear (segi kualitatif) 3 quasi
@@ -99,6 +211,23 @@ public class perhitungan {
                 return -0.0;
         }
         return hasil;
+    }
+
+    /**
+     * method untuk menjadikan nilai double menjadi 2 desimal di belakang koma
+     *
+     * @param value
+     * @param places
+     * @return
+     */
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
 }

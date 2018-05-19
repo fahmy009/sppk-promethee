@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import promethee.koneksi;
 
@@ -24,8 +25,32 @@ public class m_alternatif {
         con = new koneksi().con();
     }
 
+    public ArrayList<Alternatif> bacaAlternatif() {
+        ArrayList<Alternatif> data = new ArrayList<>();
+        String query = "SELECT * FROM kriteria;";
+        double totalBobot = 0.0;
+
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nama = rs.getString("nama");
+                int nilai = rs.getInt("nilai");
+
+                Alternatif perBaris = new Alternatif(id, nama, nilai);
+                data.add(perBaris);
+            }
+            return data;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public DefaultTableModel bacaTabel() {
-        String kolom[] = {"ID", "Nama Alternatif"};
+        String kolom[] = {"ID", "Nama Alternatif", "Nilai"};
         DefaultTableModel model = new DefaultTableModel(null, kolom);
         String query = "SELECT * FROM alternatif;";
         double totalBobot = 0.0;
@@ -38,6 +63,7 @@ public class m_alternatif {
                 Object data[] = new Object[kolom.length];
                 data[0] = rs.getString("id");
                 data[1] = rs.getString("nama");
+                data[2] = rs.getInt("nilai");
                 model.addRow(data);
             }
             return model;
@@ -47,11 +73,12 @@ public class m_alternatif {
         return null;
     }
 
-    public boolean tambah(String nama) {
-        String query = "INSERT INTO alternatif(id, nama) VALUES ('', ?);";
+    public boolean tambah(String nama, int nilai) {
+        String query = "INSERT INTO alternatif(id, nama, nilai) VALUES ('', ?, ?);";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, nama);
+            st.setInt(2, nilai);
             int status = st.executeUpdate();
             if (status > 0) {
                 return true;

@@ -40,7 +40,7 @@ public class m_kriteria {
 
     public ArrayList<Kriteria> bacaKriteria() {
         ArrayList<Kriteria> data = new ArrayList<>();
-        String query = "SELECT * FROM alternatif;";
+        String query = "SELECT * FROM kriteria;";
         double totalBobot = 0.0;
 
         try {
