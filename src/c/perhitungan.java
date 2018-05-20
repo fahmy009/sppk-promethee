@@ -64,6 +64,7 @@ public class perhitungan {
 
         hitungPerKriteria();
         hitungTotalIndeksPreferensi();
+        hitungAkhir();
 
         indeksKriteria = 0;
         perhitungan.setVisible(true);
@@ -74,11 +75,11 @@ public class perhitungan {
         perhitungan.getTotalIP().addActionListener(new btnListener("total_ip"));
         perhitungan.getNext().addActionListener(new btnListener("next"));
         perhitungan.getPrev().addActionListener(new btnListener("prev"));
-        
+
         total.getAlternatif().addActionListener(new btnListener("alternatif"));
         total.getHasilAkhir().addActionListener(new btnListener("hasil_akhir"));
         total.getHasilPerhitungan().addActionListener(new btnListener("hasil_perhitungan"));
-        
+
         akhir.getAlternatif().addActionListener(new btnListener("alternatif"));
         akhir.getKembali().addActionListener(new btnListener("total_ip"));
 
@@ -195,9 +196,52 @@ public class perhitungan {
         tabelTotalIndeksPreferensi2.addRow(barisJumlah);
         tabelTotalIndeksPreferensi2.addRow(barisEnteringFlow);
     }
-    
+
     private void hitungAkhir() {
+        String namaKolom[] = {"Alternatif", "Leaving Flow", "Entering Flow", "Net Flow", "Urutan"};
+        double leavingFlow[] = new double[data1.size()];
+        double enteringFlow[] = new double[data1.size()];
+        double netFlow[] = new double[data1.size()];
+        String urutan[] = new String[data1.size()];
+        for (int i = 0; i < data1.size(); i++) {
+            leavingFlow[i] = Double.valueOf(tabelTotalIndeksPreferensi2.getValueAt(i, data1.size() + 2).toString());
+            enteringFlow[i] = Double.valueOf(tabelTotalIndeksPreferensi2.getValueAt(data1.size() + 1, i + 1).toString());
+            netFlow[i] = leavingFlow[i] - enteringFlow[i];
+        }
         
+        /**
+         * mengurutkan
+         */
+        double netFlow2[] = netFlow;
+        for (int i = 0; i < netFlow2.length; i++) {
+            for (int j = 1; j < netFlow2.length - 1; j++) {
+                if (netFlow2[j - 1] < netFlow2[j]) {
+                    double temp = netFlow2[j - 1];
+                    netFlow2[j - 1] = netFlow2[j];
+                    netFlow2[j] = temp;
+                }
+            }
+        }
+        /**
+         * memasukan urutan
+         */
+        for (int i = 0; i < netFlow.length; i++) {
+            for (int j = 0; j < netFlow.length; j++) {
+                if (netFlow[i] == netFlow2[j]) {
+                    urutan[i] = "" + (j + 1);
+                }
+            }
+        }
+        
+        for (int i = 0; i < data1.size(); i++) {
+            Object perBaris[] = new Object[5];
+            perBaris[0] = data1.get(i).getNama();
+            perBaris[1] = leavingFlow[i];
+            perBaris[2] = enteringFlow[i];
+            perBaris[3] = netFlow[i];
+            perBaris[4] = urutan[i];
+            tabelHasilAkhir.addRow(perBaris);
+        }
     }
 
     private double tipePreferensi(int tipe, int p, int q, int selisih) {

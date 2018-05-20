@@ -75,7 +75,7 @@ public class m_kriteria {
     public DefaultTableModel bacaTabel() {
         String kolom[] = {"Kriteria", "Min Maks", "Bobot", "Tipe Preferensi", "Parameter P", "Parameter Q"};
         DefaultTableModel model = new DefaultTableModel(null, kolom);
-        String query = "SELECT * FROM alternatif;";
+        String query = "SELECT * FROM kriteria;";
         double totalBobot = 0.0;
 
         try {
