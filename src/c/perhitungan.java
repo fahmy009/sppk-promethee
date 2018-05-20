@@ -5,9 +5,12 @@
  */
 package c;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import m.Alternatif;
 import m.Kriteria;
@@ -16,6 +19,7 @@ import m.m_kriteria;
 import m.m_perhitungan;
 import v.hasilAkhir;
 import v.hasilPerhitungan;
+import v.totalIP;
 
 /**
  *
@@ -26,8 +30,9 @@ public class perhitungan {
     private m_kriteria model_kriteria;
     private m_alternatif model_alternatif;
     private m_perhitungan model_perhitungan;
-    
+
     private hasilPerhitungan perhitungan;
+    private totalIP total;
     private hasilAkhir akhir;
 
     private DefaultTableModel tabelPerhitungan[];
@@ -36,27 +41,50 @@ public class perhitungan {
     private DefaultTableModel tabelHasilAkhir;
 
     private int jumlahKriteria;
+    private int indeksKriteria;
 
     ArrayList<Kriteria> kriteria;
     ArrayList<Alternatif> data1;
 
     public perhitungan() {
+
         model_kriteria = new m_kriteria();
         model_alternatif = new m_alternatif();
         model_perhitungan = new m_perhitungan();
+
+        perhitungan = new hasilPerhitungan();
+        total = new totalIP();
+        akhir = new hasilAkhir();
+
         jumlahKriteria = model_kriteria.getJumlahKriteria();
         tabelPerhitungan = new DefaultTableModel[jumlahKriteria];
 
         kriteria = model_kriteria.bacaKriteria();
         data1 = model_alternatif.bacaAlternatif();
-        
+
         hitungPerKriteria();
         hitungTotalIndeksPreferensi();
-        
+
+        indeksKriteria = 0;
         perhitungan.setVisible(true);
+        total.setVisible(false);
         akhir.setVisible(false);
+
+        perhitungan.getAlternatif().addActionListener(new btnListener("alternatif"));
+        perhitungan.getTotalIP().addActionListener(new btnListener("total_ip"));
+        perhitungan.getNext().addActionListener(new btnListener("next"));
+        perhitungan.getPrev().addActionListener(new btnListener("prev"));
         
+        total.getAlternatif().addActionListener(new btnListener("alternatif"));
+        total.getHasilAkhir().addActionListener(new btnListener("hasil_akhir"));
+        total.getHasilPerhitungan().addActionListener(new btnListener("hasil_perhitungan"));
         
+        akhir.getAlternatif().addActionListener(new btnListener("alternatif"));
+        akhir.getKembali().addActionListener(new btnListener("total_ip"));
+
+        perhitungan.getKriteria().setText(kriteria.get(indeksKriteria).getNamaKriteria());
+        perhitungan.getTipeKriteria().setText("" + kriteria.get(indeksKriteria).getTipePreferensi());
+        perhitungan.getTabelKriteria().setModel(tabelPerhitungan[indeksKriteria]);
     }
 
     private void hitungPerKriteria() {
@@ -151,7 +179,7 @@ public class perhitungan {
          */
         Object barisJumlah[] = new Object[1 + data1.size() + 2];
         Object barisEnteringFlow[] = new Object[1 + data1.size() + 2];
-        
+
         barisJumlah[0] = "jumlah";
         double jumlah2[] = new double[data1.size()];
         for (int i = 0; i < tabelTotalIndeksPreferensi2.getRowCount(); i++) {
@@ -162,10 +190,14 @@ public class perhitungan {
         for (int i = 0; i < data1.size(); i++) {
             barisJumlah[i + 1] = jumlah2[i];
             double entering = jumlah2[i] / (data1.size() - 1);
-            barisEnteringFlow[i+1] = entering;
+            barisEnteringFlow[i + 1] = entering;
         }
         tabelTotalIndeksPreferensi2.addRow(barisJumlah);
         tabelTotalIndeksPreferensi2.addRow(barisEnteringFlow);
+    }
+    
+    private void hitungAkhir() {
+        
     }
 
     private double tipePreferensi(int tipe, int p, int q, int selisih) {
@@ -243,4 +275,76 @@ public class perhitungan {
         return bd.doubleValue();
     }
 
+    private class btnListener implements ActionListener {
+
+        String btn;
+
+        public btnListener(String btn) {
+            this.btn = btn;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (btn) {
+                case "alternatif":
+                    new c_alternatif("alternatif");
+                    perhitungan.dispose();
+                    total.dispose();
+                    akhir.dispose();
+                    break;
+                case "total_ip":
+                    perhitungan.setVisible(false);
+                    total.setVisible(true);
+                    total.getTbTotalIndeksPref().setModel(tabelTotalIndeksPreferensi1);
+                    total.getTbEnterLeave().setModel(tabelTotalIndeksPreferensi2);
+                    break;
+                case "next":
+                    next();
+                    break;
+                case "prev":
+                    prev();
+                    break;
+                case "hasil_perhitungan":
+                    perhitungan.setVisible(true);
+                    total.setVisible(false);
+                    akhir.setVisible(false);
+                    break;
+                case "hasil_akhir":
+                    perhitungan.setVisible(false);
+                    total.setVisible(false);
+                    akhir.setVisible(true);
+                    akhir.getTbAkhir().setModel(tabelHasilAkhir);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Belum Diimplementasikan!");
+            }
+        }
+
+    }
+
+    public void next() {
+        indeksKriteria++;
+        if (indeksKriteria == (jumlahKriteria - 1) || indeksKriteria > jumlahKriteria - 1) {
+            perhitungan.getNext().setEnabled(false);
+            indeksKriteria = jumlahKriteria - 1;
+        } else if (indeksKriteria > 0 && indeksKriteria < jumlahKriteria) {
+            perhitungan.getNext().setEnabled(true);
+        }
+        perhitungan.getKriteria().setText(kriteria.get(indeksKriteria).getNamaKriteria());
+        perhitungan.getTipeKriteria().setText("" + kriteria.get(indeksKriteria).getTipePreferensi());
+        perhitungan.getTabelKriteria().setModel(tabelPerhitungan[indeksKriteria]);
+    }
+
+    public void prev() {
+        indeksKriteria--;
+        if (indeksKriteria == 0 || indeksKriteria < 0) {
+            perhitungan.getPrev().setEnabled(false);
+            indeksKriteria = 0;
+        } else if (indeksKriteria > 0 && indeksKriteria < jumlahKriteria) {
+            perhitungan.getPrev().setEnabled(true);
+        }
+        perhitungan.getKriteria().setText(kriteria.get(indeksKriteria).getNamaKriteria());
+        perhitungan.getTipeKriteria().setText("" + kriteria.get(indeksKriteria).getTipePreferensi());
+        perhitungan.getTabelKriteria().setModel(tabelPerhitungan[indeksKriteria]);
+    }
 }

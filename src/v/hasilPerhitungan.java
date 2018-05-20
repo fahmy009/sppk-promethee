@@ -22,8 +22,8 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JButton getHitungAkhir() {
-        return hitungAkhir;
+    public JButton getTotalIP() {
+        return totalIP;
     }
 
     public JButton getAlternatif() {
@@ -40,14 +40,6 @@ public class hasilPerhitungan extends javax.swing.JFrame {
 
     public JButton getPrev() {
         return prev;
-    }
-
-    public JLabel getProd1() {
-        return prod1;
-    }
-
-    public JLabel getProd2() {
-        return prod2;
     }
 
     public JTable getTabelKriteria() {
@@ -76,10 +68,7 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         next = new javax.swing.JButton();
         tipeKriteria = new javax.swing.JLabel();
         alternatif = new javax.swing.JButton();
-        hitungAkhir = new javax.swing.JButton();
-        prod1 = new javax.swing.JLabel();
-        prod2 = new javax.swing.JLabel();
-        separator = new javax.swing.JLabel();
+        totalIP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,17 +108,8 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         });
         getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 56, -1, -1));
 
-        hitungAkhir.setText("Lihat Hasil Perhitungan Akhir");
-        getContentPane().add(hitungAkhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 56, -1, -1));
-
-        prod1.setText("Produk 1");
-        getContentPane().add(prod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 85, -1));
-
-        prod2.setText("Produk 2");
-        getContentPane().add(prod2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 85, -1));
-
-        separator.setText(":");
-        getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 20, -1));
+        totalIP.setText("Lihat Total IP");
+        getContentPane().add(totalIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,15 +155,12 @@ public class hasilPerhitungan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alternatif;
-    private javax.swing.JButton hitungAkhir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kriteria;
     private javax.swing.JButton next;
     private javax.swing.JButton prev;
-    private javax.swing.JLabel prod1;
-    private javax.swing.JLabel prod2;
-    private javax.swing.JLabel separator;
     private javax.swing.JTable tabelKriteria;
     private javax.swing.JLabel tipeKriteria;
+    private javax.swing.JButton totalIP;
     // End of variables declaration//GEN-END:variables
 }
