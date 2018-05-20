@@ -35,6 +35,7 @@ public class c_kriteria {
             Kriteria.getHapus().addActionListener(new btnListener("hapus"));
             Kriteria.getAlternatif().addActionListener(new btnListener("alternatif"));
             Kriteria.getPerhitungan().addActionListener(new btnListener("perhitungan"));
+            Kriteria.getTbKriteria().addMouseListener(new tabelListener());
 
             Kriteria.getUbah().setEnabled(false);
             Kriteria.getHapus().setEnabled(false);
@@ -88,6 +89,7 @@ public class c_kriteria {
                     } else if (pilihan == JOptionPane.CANCEL_OPTION) {
                         //ga ada
                     }
+                    Kriteria.getTbKriteria().setModel(model.bacaTabel());
                     break;
 
                 case "alternatif":
@@ -105,8 +107,16 @@ public class c_kriteria {
                     int bobot = TambahKriteria.getBobot().getSelectedIndex() + 1;
                     String minmaks = TambahKriteria.getMinmaks().getSelectedItem().toString();
                     int tipePref = TambahKriteria.getTipePref().getSelectedIndex() + 1;
-                    int paramP = Integer.valueOf(TambahKriteria.getParameterP().getText());
-                    int paramQ = Integer.valueOf(TambahKriteria.getParameterQ().getText());
+                    String P = TambahKriteria.getParameterP().getText();
+                    String Q = TambahKriteria.getParameterQ().getText();
+                    if (P.equalsIgnoreCase("")) {
+                        P = "0";
+                    }
+                    if (Q.equalsIgnoreCase("")) {
+                        Q = "0";
+                    }
+                    int paramP = Integer.valueOf(P);
+                    int paramQ = Integer.valueOf(Q);
                     Kriteria k = new Kriteria(0, nama, minmaks, bobot, tipePref, paramP, paramQ);
                     if (model.tambah(k)) {
                         JOptionPane.showMessageDialog(TambahKriteria, "Berhasil");

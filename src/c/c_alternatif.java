@@ -9,10 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import m.Kriteria;
 import m.m_alternatif;
+import m.m_kriteria;
 import v.alternatif;
 import v.tambahAlternatif;
+import v.tambahNilaiKriteria;
 
 /**
  *
@@ -22,8 +27,11 @@ public class c_alternatif {
 
     private alternatif Alternatif;
     private tambahAlternatif tambahAlternatif;
+    private tambahNilaiKriteria tambahNilai;
     private m_alternatif model;
+    private m_kriteria modelKrit;
     private int baris;
+    private int urutan;
 
     public c_alternatif(String view) {
         model = new m_alternatif();
@@ -33,19 +41,31 @@ public class c_alternatif {
             Alternatif.getUbah().addActionListener(new btnListener("ubah"));
             Alternatif.getHapus().addActionListener(new btnListener("hapus"));
             Alternatif.getKriteria().addActionListener(new btnListener("kriteria"));
+            Alternatif.getTbAlternatif().addMouseListener(new tabelListener());
 
             Alternatif.getUbah().setEnabled(false);
             Alternatif.getHapus().setEnabled(false);
 
             Alternatif.getTbAlternatif().setModel(model.bacaTabel());
-            
+
             Alternatif.setVisible(true);
         } else if (view.equals("tambah_alternatif")) {
             tambahAlternatif = new tambahAlternatif();
             tambahAlternatif.getBatal().addActionListener(new btnListener("batal"));
             tambahAlternatif.getSimpan().addActionListener(new btnListener("simpan"));
-            
+
             tambahAlternatif.setVisible(true);
+        } else if (view.equals("tambah_nilai")) {
+            urutan = 0;
+            tambahNilai = new tambahNilaiKriteria();
+            tambahNilai.getKonfirmasi().addActionListener(new btnListener("konfirmasi"));
+            
+            modelKrit = new m_kriteria();
+            int jumlahKrit = modelKrit.getJumlahKriteria();
+            ArrayList<Kriteria> kriteria = modelKrit.bacaKriteria();
+            for (int i = 0; i < 10; i++) {
+                
+            }
         }
     }
 
@@ -81,6 +101,7 @@ public class c_alternatif {
                     } else if (pilihan == JOptionPane.CANCEL_OPTION) {
                         //ga ada
                     }
+                    Alternatif.getTbAlternatif().setModel(model.bacaTabel());
                     break;
                 case "kriteria":
                     new c_kriteria("kriteria");
@@ -99,6 +120,10 @@ public class c_alternatif {
                         JOptionPane.showMessageDialog(tambahAlternatif, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                     new c_alternatif("alternatif");
+                    tambahAlternatif.dispose();
+                    break;
+                case "konfirmasi":
+                    urutan++;
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Belum Diimplementasikan!");
