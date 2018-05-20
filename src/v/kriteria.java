@@ -21,6 +21,10 @@ public class kriteria extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JButton getPerhitungan() {
+        return perhitungan;
+    }
+    
     public JButton getAlternatif() {
         return alternatif;
     }
@@ -59,6 +63,7 @@ public class kriteria extends javax.swing.JFrame {
         ubah = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
         alternatif = new javax.swing.JButton();
+        perhitungan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +90,8 @@ public class kriteria extends javax.swing.JFrame {
 
         alternatif.setText("Alternatif");
 
+        perhitungan.setText("Lihat Perhitungan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +113,9 @@ public class kriteria extends javax.swing.JFrame {
                         .addComponent(ubah)
                         .addGap(18, 18, 18)
                         .addComponent(hapus)
-                        .addGap(634, 634, 634))))
+                        .addGap(540, 540, 540)
+                        .addComponent(perhitungan)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +131,8 @@ public class kriteria extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ubah)
-                            .addComponent(hapus))
+                            .addComponent(hapus)
+                            .addComponent(perhitungan))
                         .addGap(5, 5, 5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(tambah)
@@ -172,6 +182,7 @@ public class kriteria extends javax.swing.JFrame {
     private javax.swing.JButton hapus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton perhitungan;
     private javax.swing.JButton tambah;
     private javax.swing.JTable tbKriteria;
     private javax.swing.JButton ubah;

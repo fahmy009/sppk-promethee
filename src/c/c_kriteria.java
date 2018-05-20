@@ -34,9 +34,10 @@ public class c_kriteria {
             Kriteria.getUbah().addActionListener(new btnListener("ubah"));
             Kriteria.getHapus().addActionListener(new btnListener("hapus"));
             Kriteria.getAlternatif().addActionListener(new btnListener("alternatif"));
+            Kriteria.getPerhitungan().addActionListener(new btnListener("perhitungan"));
 
             Kriteria.getUbah().setEnabled(false);
-            Kriteria.getHapus().setEnabled(true);
+            Kriteria.getHapus().setEnabled(false);
             
             Kriteria.getTbKriteria().setModel(model.bacaTabel());
             
@@ -62,6 +63,10 @@ public class c_kriteria {
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (button) {
+                case "perhitungan":
+                    new perhitungan();
+                    Kriteria.dispose();
+                    break;
                 case "tambah":
                     new c_kriteria("tambah_kriteria");
                     Kriteria.dispose();

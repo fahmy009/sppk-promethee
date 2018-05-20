@@ -42,7 +42,9 @@
                       <Component id="ubah" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="hapus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="634" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="540" max="-2" attributes="0"/>
+                      <Component id="perhitungan" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -64,6 +66,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ubah" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="hapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="perhitungan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   </Group>
@@ -121,6 +124,11 @@
     <Component class="javax.swing.JButton" name="alternatif">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alternatif"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="perhitungan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lihat Perhitungan"/>
       </Properties>
     </Component>
   </SubComponents>
