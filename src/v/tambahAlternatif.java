@@ -25,8 +25,8 @@ public class tambahAlternatif extends javax.swing.JFrame {
         return batal;
     }
 
-    public JTextField getNilai() {
-        return nilai;
+    public JTextField getDeskripsi() {
+        return deskripsi;
     }
 
     public JTextField getNama() {
@@ -52,7 +52,7 @@ public class tambahAlternatif extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nama = new javax.swing.JTextField();
-        nilai = new javax.swing.JTextField();
+        deskripsi = new javax.swing.JTextField();
         simpan = new javax.swing.JButton();
         batal = new javax.swing.JButton();
 
@@ -62,7 +62,7 @@ public class tambahAlternatif extends javax.swing.JFrame {
 
         jLabel2.setText("Nama");
 
-        jLabel3.setText("Nilai");
+        jLabel3.setText("Deskripsi");
 
         simpan.setText("Simpan");
 
@@ -85,7 +85,7 @@ public class tambahAlternatif extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1)
                         .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                        .addComponent(nilai)))
+                        .addComponent(deskripsi)))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,7 +100,7 @@ public class tambahAlternatif extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(nilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simpan)
@@ -148,11 +148,11 @@ public class tambahAlternatif extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton batal;
+    private javax.swing.JTextField deskripsi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nama;
-    private javax.swing.JTextField nilai;
     private javax.swing.JButton simpan;
     // End of variables declaration//GEN-END:variables
 }

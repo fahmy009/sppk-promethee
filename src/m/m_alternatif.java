@@ -27,7 +27,7 @@ public class m_alternatif {
 
     public ArrayList<Alternatif> bacaAlternatif() {
         ArrayList<Alternatif> data = new ArrayList<>();
-        String query = "SELECT * FROM kriteria;";
+        String query = "SELECT * FROM alternatif;";
         double totalBobot = 0.0;
 
         try {
@@ -37,9 +37,9 @@ public class m_alternatif {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
-                int nilai = rs.getInt("nilai");
+                String deskripsi = rs.getString("deskripsi");
 
-                Alternatif perBaris = new Alternatif(id, nama, nilai);
+                Alternatif perBaris = new Alternatif(id, nama, deskripsi);
                 data.add(perBaris);
             }
             return data;
@@ -50,7 +50,7 @@ public class m_alternatif {
     }
     
     public DefaultTableModel bacaTabel() {
-        String kolom[] = {"ID", "Nama Alternatif", "Nilai"};
+        String kolom[] = {"ID", "Nama Alternatif", "Deskripsi"};
         DefaultTableModel model = new DefaultTableModel(null, kolom);
         String query = "SELECT * FROM alternatif;";
         double totalBobot = 0.0;
@@ -63,7 +63,7 @@ public class m_alternatif {
                 Object data[] = new Object[kolom.length];
                 data[0] = rs.getString("id");
                 data[1] = rs.getString("nama");
-                data[2] = rs.getInt("nilai");
+                data[2] = rs.getString("deskripsi");
                 model.addRow(data);
             }
             return model;
@@ -72,13 +72,30 @@ public class m_alternatif {
         }
         return null;
     }
-
-    public boolean tambah(String nama, int nilai) {
-        String query = "INSERT INTO alternatif(nama, nilai) VALUES (?, ?);";
+    
+    public int bacaID(String nama, String deskripsi) {
+        String query = "SELECT id FROM alternatif WHERE nama=? AND deskripsi=?;";
+        int id = -1;
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, nama);
-            st.setInt(2, nilai);
+            st.setString(2, deskripsi);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public boolean tambah(String nama, String deskripsi) {
+        String query = "INSERT INTO alternatif(nama, deskripsi) VALUES (?, ?);";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, nama);
+            st.setString(2, deskripsi);
             int status = st.executeUpdate();
             if (status > 0) {
                 return true;
@@ -89,13 +106,14 @@ public class m_alternatif {
         return false;
     }
 
-    public boolean ubah(String nama, int id) {
-        String query = "UPDATE alternatif SET nama=? WHERE id=?;";
+    public boolean ubah(String nama, String deskripsi, int id) {
+        String query = "UPDATE alternatif SET nama=?, deskripsi=? WHERE id=?;";
 
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, nama);
-            st.setInt(2, id);
+            st.setString(2, deskripsi);
+            st.setInt(3, id);
             
             int status = st.executeUpdate();
             if (status > 0) {

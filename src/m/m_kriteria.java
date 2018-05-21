@@ -73,7 +73,7 @@ public class m_kriteria {
     }
 
     public DefaultTableModel bacaTabel() {
-        String kolom[] = {"Kriteria", "Min Maks", "Bobot", "Tipe Preferensi", "Parameter P", "Parameter Q"};
+        String kolom[] = {"id", "Kriteria", "Min Maks", "Bobot", "Tipe Preferensi", "Parameter P", "Parameter Q"};
         DefaultTableModel model = new DefaultTableModel(null, kolom);
         String query = "SELECT * FROM kriteria;";
         double totalBobot = 0.0;
@@ -88,14 +88,15 @@ public class m_kriteria {
             rs.beforeFirst();
 
             while (rs.next()) {
-                Object data[] = new Object[kolom.length];
-                data[0] = rs.getString("namaKriteria");
-                data[1] = rs.getString("minmaks");
+                Object data[] = new Object[7];
+                data[0] = rs.getInt("id");
+                data[1] = rs.getString("namaKriteria");
+                data[2] = rs.getString("minmaks");
                 double bobot = rs.getDouble("bobot") / totalBobot;
-                data[2] = round(bobot, 2);
-                data[3] = rs.getInt("tipePreferensi");
-                data[4] = rs.getInt("parameterP");
-                data[5] = rs.getInt("parameterQ");
+                data[3] = round(bobot, 2);
+                data[4] = rs.getInt("tipePreferensi");
+                data[5] = rs.getInt("parameterP");
+                data[6] = rs.getInt("parameterQ");
 
                 model.addRow(data);
             }
@@ -107,7 +108,7 @@ public class m_kriteria {
     }
 
     public boolean tambah(Kriteria k) {
-        String query = "INSERT INTO alternatif(namaKriteria, minmaks, bobot, tipePreferensi, parameterA, parameterB) VALUES (?, ?, ?, ?,?, ?, ?);";
+        String query = "INSERT INTO kriteria(namaKriteria, minmaks, bobot, tipePreferensi, parameterP, parameterQ) VALUES (?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, k.getNamaKriteria());
@@ -128,7 +129,7 @@ public class m_kriteria {
     }
 
     public boolean ubah(Kriteria k) {
-        String query = "UPDATE alternatif SET namaKriteria=?, minmaks=?, bobot=?, tipePreferensi=?, parameterA=?, parameterB=? WHERE id=?;";
+        String query = "UPDATE kriteria SET namaKriteria=?, minmaks=?, bobot=?, tipePreferensi=?, parameterA=?, parameterB=? WHERE id=?;";
 
         try {
             PreparedStatement st = con.prepareStatement(query);
@@ -151,7 +152,7 @@ public class m_kriteria {
     }
 
     public boolean hapus(int id) {
-        String query = "DELETE FROM alternatif WHERE id=?;";
+        String query = "DELETE FROM kriteria WHERE id=?;";
 
         try {
             PreparedStatement st = con.prepareStatement(query);
@@ -168,10 +169,10 @@ public class m_kriteria {
 
     public int getJumlahKriteria() {
         try {
-            PreparedStatement st = con.prepareStatement("SELECT COUNT(*) as jumlah FROM alternatif;");
+            PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM kriteria;");
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return rs.getInt("jumlah");
+                return rs.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();

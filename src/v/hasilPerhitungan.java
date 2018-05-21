@@ -22,6 +22,12 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JLabel getNoKriteria() {
+        return noKriteria;
+    }
+    
+    
+
     public JButton getTotalIP() {
         return totalIP;
     }
@@ -69,6 +75,9 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         tipeKriteria = new javax.swing.JLabel();
         alternatif = new javax.swing.JButton();
         totalIP = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        noKriteria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,7 +98,7 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 106, 934, 442));
 
         kriteria.setText("Label Kriteria");
-        getContentPane().add(kriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 85, -1));
+        getContentPane().add(kriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 210, -1));
 
         prev.setText("Kriteria Sebelumnya");
         getContentPane().add(prev, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 11, -1, -1));
@@ -98,7 +107,7 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(755, 11, -1, -1));
 
         tipeKriteria.setText("Label Tipe Kriteria");
-        getContentPane().add(tipeKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, -1, -1));
+        getContentPane().add(tipeKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 150, -1));
 
         alternatif.setText("Alternatif");
         alternatif.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +119,15 @@ public class hasilPerhitungan extends javax.swing.JFrame {
 
         totalIP.setText("Lihat Total IP");
         getContentPane().add(totalIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, -1, -1));
+
+        jLabel1.setText("Tipe Preferensi :");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jLabel2.setText("Kriteria  - ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        noKriteria.setText("Nomor Kriteria");
+        getContentPane().add(noKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 80, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,9 +173,12 @@ public class hasilPerhitungan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alternatif;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kriteria;
     private javax.swing.JButton next;
+    private javax.swing.JLabel noKriteria;
     private javax.swing.JButton prev;
     private javax.swing.JTable tabelKriteria;
     private javax.swing.JLabel tipeKriteria;

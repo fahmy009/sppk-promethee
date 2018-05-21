@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import m.Kriteria;
 import m.m_alternatif;
+import m.m_alternatif_kriteria;
 import m.m_kriteria;
 import v.alternatif;
 import v.tambahAlternatif;
@@ -28,13 +29,24 @@ public class c_alternatif {
     private alternatif Alternatif;
     private tambahAlternatif tambahAlternatif;
     private tambahNilaiKriteria tambahNilai;
+
     private m_alternatif model;
     private m_kriteria modelKrit;
+    private m_alternatif_kriteria modelAlterKrit;
+
     private int baris;
     private int urutan;
+    private int jumlahKrit;
+    private ArrayList<Kriteria> kriteria;
+
+    private static String NamaAlternatif;
+    private static int IDAlternatif;
+    private int IDKriteria;
+    private int Nilai;
 
     public c_alternatif(String view) {
         model = new m_alternatif();
+        modelAlterKrit = new m_alternatif_kriteria();
         if (view.equals("alternatif")) {
             Alternatif = new alternatif();
             Alternatif.getTambah().addActionListener(new btnListener("tambah"));
@@ -58,14 +70,14 @@ public class c_alternatif {
         } else if (view.equals("tambah_nilai")) {
             urutan = 0;
             tambahNilai = new tambahNilaiKriteria();
-            tambahNilai.getKonfirmasi().addActionListener(new btnListener("konfirmasi"));
-            
+            tambahNilai.setVisible(true);
+
             modelKrit = new m_kriteria();
-            int jumlahKrit = modelKrit.getJumlahKriteria();
-            ArrayList<Kriteria> kriteria = modelKrit.bacaKriteria();
-            for (int i = 0; i < 10; i++) {
-                
-            }
+
+            jumlahKrit = modelKrit.getJumlahKriteria();
+            kriteria = modelKrit.bacaKriteria();
+            isiNilai();
+            tambahNilai.getKonfirmasi().addActionListener(new konfirmasiListener());
         }
     }
 
@@ -96,6 +108,8 @@ public class c_alternatif {
                         } else {
                             JOptionPane.showMessageDialog(Alternatif, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                         }
+                        Alternatif.getHapus().setEnabled(false);
+                        Alternatif.getUbah().setEnabled(false);
                     } else if (pilihan == JOptionPane.NO_OPTION) {
                         //ga ada
                     } else if (pilihan == JOptionPane.CANCEL_OPTION) {
@@ -113,20 +127,38 @@ public class c_alternatif {
                     break;
                 case "simpan":
                     String nama = tambahAlternatif.getNama().getText();
-                    int nilai = Integer.valueOf(tambahAlternatif.getNilai().getText());
-                    if (model.tambah(nama, nilai)) {
+                    String deskripsi = tambahAlternatif.getDeskripsi().getText();
+                    if (model.tambah(nama, deskripsi)) {
                         JOptionPane.showMessageDialog(tambahAlternatif, "Berhasil");
+                        NamaAlternatif = nama;
+                        IDAlternatif = model.bacaID(nama, deskripsi);
                     } else {
                         JOptionPane.showMessageDialog(tambahAlternatif, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    new c_alternatif("alternatif");
+                    new c_alternatif("tambah_nilai");
                     tambahAlternatif.dispose();
-                    break;
-                case "konfirmasi":
-                    urutan++;
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Belum Diimplementasikan!");
+            }
+        }
+
+    }
+
+    private class konfirmasiListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Nilai = Integer.valueOf(tambahNilai.getNilai().getText());
+            IDKriteria = kriteria.get(urutan).getID();
+            if (modelAlterKrit.tambah(IDKriteria, IDAlternatif, Nilai)) {
+                if (urutan == jumlahKrit - 1) {
+                    new c_alternatif("alternatif");
+                    tambahNilai.dispose();
+                } else {
+                    urutan++;
+                    isiNilai();
+                }
             }
         }
 
@@ -162,6 +194,16 @@ public class c_alternatif {
 
         }
         //</editor-fold>
+    }
 
+    private void isiNilai() {
+        tambahNilai.getNilai().setText("");
+        tambahNilai.getNilai().requestFocus();
+        if (urutan == jumlahKrit - 1) {
+            tambahNilai.getKonfirmasi().setText("Selesai");
+        }
+        tambahNilai.getLabelAlternatif().setText(NamaAlternatif);
+        tambahNilai.getLabelKriteria().setText(kriteria.get(urutan).getNamaKriteria());
     }
 }
+

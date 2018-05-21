@@ -7,7 +7,9 @@ package m;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import promethee.koneksi;
 
 /**
@@ -19,7 +21,32 @@ public class m_alternatif_kriteria {
     Connection con;
 
     public m_alternatif_kriteria() {
-        new koneksi().con();
+        con = new koneksi().con();
+    }
+    
+    public ArrayList<AlternatifKriteria> bacaAlterKrit() {
+        ArrayList<AlternatifKriteria> ak = new ArrayList<>();
+        String query = "SELECT ak.id, ak.idAlternatif, ak.idKriteria, a.nama, k.namaKriteria, ak.nilai FROM alternatif_kriteria ak JOIN alternatif a ON ak.idAlternatif = a.id JOIN kriteria k ON ak.idKriteria = k.id;";
+        
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int idAlternatif = rs.getInt("idAlternatif");
+                int idKriteria = rs.getInt("idKriteria");
+                String namaAlternatif = rs.getString("nama");
+                String namaKriteria = rs.getString("namaKriteria");
+                int nilai = rs.getInt("nilai");
+                AlternatifKriteria baris = new AlternatifKriteria(id, idAlternatif, idKriteria, namaAlternatif, namaKriteria, nilai);
+                ak.add(baris);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+        
+        return ak;
     }
 
     public boolean tambah(int idKriteria, int idAlternatif, int nilai) {

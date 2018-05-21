@@ -13,12 +13,12 @@ public class Alternatif {
     
     private int ID;
     private String Nama;
-    private int Nilai;
+    private String Deskripsi;
 
-    public Alternatif(int ID, String Nama, int Nilai) {
+    public Alternatif(int ID, String Nama, String Deskripsi) {
         this.ID = ID;
         this.Nama = Nama;
-        this.Nilai = Nilai;
+        this.Deskripsi = Deskripsi;
     }
 
     public int getID() {
@@ -37,12 +37,12 @@ public class Alternatif {
         this.Nama = Nama;
     }
 
-    public int getNilai() {
-        return Nilai;
+    public String getDeskripsi() {
+        return Deskripsi;
     }
 
-    public void setNilai(int Nilai) {
-        this.Nilai = Nilai;
+    public void setDeskripsi(String Deskripsi) {
+        this.Deskripsi = Deskripsi;
     }
     
     

@@ -84,6 +84,8 @@ public class c_kriteria {
                         } else {
                             JOptionPane.showMessageDialog(Kriteria, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                         }
+                        Kriteria.getHapus().setEnabled(false);
+                        Kriteria.getUbah().setEnabled(false);
                     } else if (pilihan == JOptionPane.NO_OPTION) {
                         //ga ada
                     } else if (pilihan == JOptionPane.CANCEL_OPTION) {
@@ -129,7 +131,7 @@ public class c_kriteria {
                     break;
 
                 case "tipePref":
-                    int tipe = TambahKriteria.getTipePref().getSelectedIndex() + 1;
+                    int tipe = TambahKriteria.getTipePref().getSelectedIndex();
                     if (tipe == 1) {
                         TambahKriteria.getParameterP().setEnabled(false);
                         TambahKriteria.getParameterQ().setEnabled(false);
