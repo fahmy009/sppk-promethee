@@ -254,6 +254,8 @@ public class perhitungan {
 
     private double tipePreferensi(String minmaks, int tipe, int p, int q, int selisih, int a, int b) {
         double hasil = 0.0;
+        
+        int selisihAbsolut = Math.abs(selisih);
         if (minmaks.equalsIgnoreCase("minimasi")) {
             if (a < b) {
                 //lanjut ke pengecekan tipe
@@ -299,20 +301,20 @@ public class perhitungan {
                 }
                 break;
             case 4:
-                if (selisih <= q) {
+                if (selisihAbsolut <= q) {
                     hasil = 0.0;
-                } else if (selisih > q && selisih <= p) {
+                } else if (selisihAbsolut > q && selisihAbsolut <= p) {
                     hasil = 0.5;
-                } else if (selisih > p) {
+                } else if (selisihAbsolut > p) {
                     hasil = 1.0;
                 }
                 break;
             case 5:
-                if (selisih <= q) {
+                if (selisihAbsolut <= q) {
                     hasil = 0.0;
-                } else if (selisih > q && selisih <= p) {
-                    hasil = (selisih - q) / (p - q);
-                } else if (selisih > p) {
+                } else if (selisihAbsolut > q && selisihAbsolut <= p) {
+                    hasil = (selisihAbsolut - q) / (p - q);
+                } else if (selisihAbsolut > p) {
                     hasil = 1.0;
                 }
                 break;
