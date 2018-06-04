@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import m.Alternatif;
@@ -18,6 +21,7 @@ import m.Kriteria;
 import m.m_alternatif;
 import m.m_alternatif_kriteria;
 import m.m_kriteria;
+import m.m_perhitungan;
 import v.hasilAkhir;
 import v.hasilPerhitungan;
 import v.totalIP;
@@ -27,89 +31,91 @@ import v.totalIP;
  * @author ASUS
  */
 public class perhitungan {
-
+    
     private m_kriteria model_kriteria;
     private m_alternatif model_alternatif;
     private m_alternatif_kriteria model_alternatif_kriteria;
-
+    private m_perhitungan model_perhitungan;
+    
     private hasilPerhitungan perhitungan;
     private totalIP total;
     private hasilAkhir akhir;
-
+    
     private DefaultTableModel tabelPerhitungan[];
     private DefaultTableModel tabelTotalIndeksPreferensi1;
     private DefaultTableModel tabelTotalIndeksPreferensi2;
     private DefaultTableModel tabelHasilAkhir;
-
+    
     private int jumlahKriteria;
     private int indeksKriteria;
-
+    
     ArrayList<Kriteria> kriteria;
     ArrayList<Alternatif> alternatif;
     ArrayList<AlternatifKriteria> alternatifKriteria;
-
-    public perhitungan() {
-
+    
+    public perhitungan() throws SQLException {
+        
         model_kriteria = new m_kriteria();
         model_alternatif = new m_alternatif();
         model_alternatif_kriteria = new m_alternatif_kriteria();
-
+        model_perhitungan = new m_perhitungan();
+        
         perhitungan = new hasilPerhitungan();
         total = new totalIP();
         akhir = new hasilAkhir();
-
+        
         jumlahKriteria = model_kriteria.getJumlahKriteria();
         tabelPerhitungan = new DefaultTableModel[jumlahKriteria];
-
+        
         kriteria = model_kriteria.bacaKriteria();
         alternatif = model_alternatif.bacaAlternatif();
         alternatifKriteria = model_alternatif_kriteria.bacaAlterKrit();
-
+        
         hitungPerKriteria();
         hitungTotalIndeksPreferensi();
         hitungAkhir();
-
+        
         indeksKriteria = 0;
         perhitungan.setVisible(true);
         total.setVisible(false);
         akhir.setVisible(false);
-
+        
         perhitungan.getAlternatif().addActionListener(new btnListener("alternatif"));
         perhitungan.getTotalIP().addActionListener(new btnListener("total_ip"));
         perhitungan.getNext().addActionListener(new btnListener("next"));
         perhitungan.getPrev().addActionListener(new btnListener("prev"));
-
+        
         total.getAlternatif().addActionListener(new btnListener("alternatif"));
         total.getHasilAkhir().addActionListener(new btnListener("hasil_akhir"));
         total.getHasilPerhitungan().addActionListener(new btnListener("hasil_perhitungan"));
-
+        
         akhir.getAlternatif().addActionListener(new btnListener("alternatif"));
         akhir.getKembali().addActionListener(new btnListener("total_ip"));
-
+        
         perhitungan.getPrev().setEnabled(false);
         perhitungan.getNoKriteria().setText("" + (indeksKriteria + 1));
         perhitungan.getKriteria().setText(kriteria.get(indeksKriteria).getNamaKriteria());
         perhitungan.getTipeKriteria().setText("" + kriteria.get(indeksKriteria).getTipePreferensi());
         perhitungan.getTabelKriteria().setModel(tabelPerhitungan[indeksKriteria]);
     }
-
+    
     private void hitungPerKriteria() {
         String namaKolom[] = {"A", "B", "Nilai A", "Nilai B", "Selisih(d)", "|d|", "P", "IP"};
         int i = 0;
-
+        
         for (Kriteria perKriteria : kriteria) {
-
+            
             tabelPerhitungan[i] = new DefaultTableModel(null, namaKolom);
-
+            
             for (AlternatifKriteria a : alternatifKriteria) {
                 for (AlternatifKriteria b : alternatifKriteria) {
                     if (a.getID() != b.getID()) {
                         if (a.getIDKriteria() == perKriteria.getID() && b.getIDKriteria() == perKriteria.getID()) {
                             int selisihAbsolut = Math.abs(a.getNilai() - b.getNilai());
                             int selisih = a.getNilai() - b.getNilai();
-
+                            
                             double P = tipePreferensi(perKriteria.getMinMaks(), perKriteria.getTipePreferensi(), perKriteria.getParamP(), perKriteria.getParamQ(), selisih, a.getNilai(), b.getNilai());
-
+                            
                             double IP = P * perKriteria.getBobot();
                             IP = round(IP, 2);
                             Object perBaris[] = {
@@ -130,12 +136,12 @@ public class perhitungan {
             i++;
         }
     }
-
+    
     private void hitungTotalIndeksPreferensi() {
         String kolom1[] = {"A", "B", "Total Indeks Preferensi"};
         tabelTotalIndeksPreferensi1 = new DefaultTableModel(null, kolom1);
         double IP[] = new double[tabelPerhitungan[0].getRowCount()];
-
+        
         for (int i = 0; i < tabelPerhitungan.length; i++) {
             for (int j = 0; j < tabelPerhitungan[i].getRowCount(); j++) {
                 IP[j] += Double.valueOf(tabelPerhitungan[i].getValueAt(j, 7).toString());
@@ -148,7 +154,7 @@ public class perhitungan {
             perBaris[2] = IP[i];
             tabelTotalIndeksPreferensi1.addRow(perBaris);
         }
-
+        
         ArrayList<String> kolom = new ArrayList<>();
         kolom.add("Alternatif");
         for (Alternatif alternatif : alternatif) {
@@ -158,7 +164,7 @@ public class perhitungan {
         kolom.add("Jumlah");
         kolom.add("Leaving");
         tabelTotalIndeksPreferensi2 = new DefaultTableModel(null, kolom.toArray());
-
+        
         for (int i = 0; i < alternatif.size(); i++) {
             Object perBaris[] = new Object[1 + alternatif.size() + 2];
             String namaBaris = alternatif.get(i).getNama();
@@ -187,7 +193,7 @@ public class perhitungan {
          */
         Object barisJumlah[] = new Object[1 + alternatif.size() + 2];
         Object barisEnteringFlow[] = new Object[1 + alternatif.size() + 2];
-
+        
         barisJumlah[0] = "jumlah";
         double jumlah2[] = new double[alternatif.size()];
         for (int i = 0; i < tabelTotalIndeksPreferensi2.getRowCount(); i++) {
@@ -203,9 +209,10 @@ public class perhitungan {
         tabelTotalIndeksPreferensi2.addRow(barisJumlah);
         tabelTotalIndeksPreferensi2.addRow(barisEnteringFlow);
     }
-
-    private void hitungAkhir() {
-        String namaKolom[] = {"Alternatif", "Leaving Flow", "Entering Flow", "Net Flow", "Urutan"};
+    
+    private void hitungAkhir() throws SQLException {
+//        String namaKolom[] = {"Alternatif", "Leaving Flow", "Entering Flow", "Net Flow", "Urutan"};
+        String namaKolom[] = {"Alternatif", "Leaving Flow", "Entering Flow", "Net Flow"};
         tabelHasilAkhir = new DefaultTableModel(null, namaKolom);
         double leavingFlow[] = new double[alternatif.size()];
         double enteringFlow[] = new double[alternatif.size()];
@@ -220,38 +227,40 @@ public class perhitungan {
         /**
          * mengurutkan
          */
-        double netFlow2[] = netFlow;
-        for (int i = 0; i < netFlow2.length; i++) {
-            for (int j = 1; j < netFlow2.length - 1; j++) {
-                if (netFlow2[j - 1] < netFlow2[j]) {
-                    double temp = netFlow2[j - 1];
-                    netFlow2[j - 1] = netFlow2[j];
-                    netFlow2[j] = temp;
-                }
-            }
-        }
+//        double netFlow2[] = netFlow;
+//        for (int i = 0; i < netFlow2.length; i++) {
+//            for (int j = 1; j < netFlow2.length - 1; j++) {
+//                if (netFlow2[j - 1] < netFlow2[j]) {
+//                    double temp = netFlow2[j - 1];
+//                    netFlow2[j - 1] = netFlow2[j];
+//                    netFlow2[j] = temp;
+//                }
+//            }
+//
+//        }
         /**
          * memasukan urutan
          */
-        for (int i = 0; i < netFlow.length; i++) {
-            for (int j = 0; j < netFlow.length; j++) {
-                if (netFlow[i] == netFlow2[j]) {
-                    urutan[i] = "" + (j + 1);
-                }
-            }
-        }
-
+//        for (int i = 0; i < netFlow.length; i++) {
+//            for (int j = 0; j < netFlow.length; j++) {
+//                if (netFlow[i] == netFlow2[j]) {
+//                        urutan[i] = "" + (j + 1);
+//                }
+//            }
+//        }
+//
         for (int i = 0; i < alternatif.size(); i++) {
-            Object perBaris[] = new Object[5];
+            Object perBaris[] = new Object[4];
             perBaris[0] = alternatif.get(i).getNama();
             perBaris[1] = leavingFlow[i];
             perBaris[2] = enteringFlow[i];
             perBaris[3] = netFlow[i];
-            perBaris[4] = urutan[i];
+//            perBaris[4] = urutan[i];
+//            model_perhitungan.save("NULL,'" + alternatif.get(i).getNama() + "'," + leavingFlow[i] + "," + enteringFlow[i] + "," + netFlow[i]);
             tabelHasilAkhir.addRow(perBaris);
         }
     }
-
+    
     private double tipePreferensi(String minmaks, int tipe, int p, int q, int selisih, int a, int b) {
         double hasil = 0.0;
         
@@ -326,26 +335,26 @@ public class perhitungan {
 
     /**
      * method untuk menjadikan nilai double menjadi 2 desimal di belakang koma
-     * 
+     *
      */
     public static double round(double value, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();
         }
-
+        
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-
+    
     private class btnListener implements ActionListener {
-
+        
         String btn;
-
+        
         public btnListener(String btn) {
             this.btn = btn;
         }
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (btn) {
@@ -376,15 +385,22 @@ public class perhitungan {
                     perhitungan.setVisible(false);
                     total.setVisible(false);
                     akhir.setVisible(true);
-                    akhir.getTbAkhir().setModel(tabelHasilAkhir);
+            {
+                try {
+                    //                    akhir.getTbAkhir().setModel(tabelHasilAkhir);
+                    akhir.getTbAkhir().setModel(model_perhitungan.getTable());
+                } catch (SQLException ex) {
+                    Logger.getLogger(perhitungan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Belum Diimplementasikan!");
             }
         }
-
+        
     }
-
+    
     public void next() {
         indeksKriteria++;
         if (indeksKriteria == 0) {
@@ -398,7 +414,7 @@ public class perhitungan {
             perhitungan.getNext().setEnabled(false);
             indeksKriteria = jumlahKriteria - 1;
         }
-        if (indeksKriteria > 0 && indeksKriteria < jumlahKriteria -1) {
+        if (indeksKriteria > 0 && indeksKriteria < jumlahKriteria - 1) {
             perhitungan.getNext().setEnabled(true);
         }
         perhitungan.getNoKriteria().setText("" + (indeksKriteria + 1));
@@ -406,7 +422,7 @@ public class perhitungan {
         perhitungan.getTipeKriteria().setText("" + kriteria.get(indeksKriteria).getTipePreferensi());
         perhitungan.getTabelKriteria().setModel(tabelPerhitungan[indeksKriteria]);
     }
-
+    
     public void prev() {
         indeksKriteria--;
         if (indeksKriteria == 0) {
