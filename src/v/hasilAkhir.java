@@ -5,8 +5,12 @@
  */
 package v;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -19,6 +23,8 @@ public class hasilAkhir extends javax.swing.JFrame {
      */
     public hasilAkhir() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        
     }
 
     public JButton getAlternatif() {
@@ -32,8 +38,6 @@ public class hasilAkhir extends javax.swing.JFrame {
     public JTable getTbAkhir() {
         return tbAkhir;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,52 +52,40 @@ public class hasilAkhir extends javax.swing.JFrame {
         tbAkhir = new javax.swing.JTable();
         kembali = new javax.swing.JButton();
         alternatif = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
+
+        tbAkhir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tbAkhir.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tbAkhir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbAkhir.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(tbAkhir);
 
-        kembali.setText("Total Indeks Preferensi");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 380, 450));
 
-        alternatif.setText("Alternatif");
+        kembali.setBorder(null);
+        kembali.setBorderPainted(false);
+        kembali.setContentAreaFilled(false);
+        getContentPane().add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kembali)
-                    .addComponent(alternatif))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kembali)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(alternatif)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        alternatif.setBorder(null);
+        alternatif.setBorderPainted(false);
+        alternatif.setContentAreaFilled(false);
+        getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 110, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Hasil Akhir.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,6 +127,7 @@ public class hasilAkhir extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alternatif;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembali;
     private javax.swing.JTable tbAkhir;

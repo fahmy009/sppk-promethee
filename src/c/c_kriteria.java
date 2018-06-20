@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import m.Kriteria;
 import m.m_kriteria;
@@ -31,24 +34,22 @@ public class c_kriteria {
         if (view.equals("kriteria")) {
             Kriteria = new kriteria();
             Kriteria.getTambah().addActionListener(new btnListener("tambah"));
-            Kriteria.getUbah().addActionListener(new btnListener("ubah"));
             Kriteria.getHapus().addActionListener(new btnListener("hapus"));
             Kriteria.getAlternatif().addActionListener(new btnListener("alternatif"));
             Kriteria.getPerhitungan().addActionListener(new btnListener("perhitungan"));
             Kriteria.getTbKriteria().addMouseListener(new tabelListener());
 
-            Kriteria.getUbah().setEnabled(false);
             Kriteria.getHapus().setEnabled(false);
-            
+
             Kriteria.getTbKriteria().setModel(model.bacaTabel());
-            
+
             Kriteria.setVisible(true);
         } else if (view.equals("tambah_kriteria")) {
             TambahKriteria = new tambahKriteria();
             TambahKriteria.getTipePref().addActionListener(new btnListener("tipePref"));
             TambahKriteria.getBatal().addActionListener(new btnListener("batal"));
             TambahKriteria.getSimpan().addActionListener(new btnListener("simpan"));
-            
+
             TambahKriteria.setVisible(true);
         }
     }
@@ -85,7 +86,6 @@ public class c_kriteria {
                             JOptionPane.showMessageDialog(Kriteria, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         Kriteria.getHapus().setEnabled(false);
-                        Kriteria.getUbah().setEnabled(false);
                     } else if (pilihan == JOptionPane.NO_OPTION) {
                         //ga ada
                     } else if (pilihan == JOptionPane.CANCEL_OPTION) {
@@ -160,7 +160,6 @@ public class c_kriteria {
         @Override
         public void mouseClicked(MouseEvent e) {
             baris = Kriteria.getTbKriteria().getSelectedRow();
-            Kriteria.getUbah().setEnabled(true);
             Kriteria.getHapus().setEnabled(true);
         }
 

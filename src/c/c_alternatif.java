@@ -50,12 +50,10 @@ public class c_alternatif {
         if (view.equals("alternatif")) {
             Alternatif = new alternatif();
             Alternatif.getTambah().addActionListener(new btnListener("tambah"));
-            Alternatif.getUbah().addActionListener(new btnListener("ubah"));
             Alternatif.getHapus().addActionListener(new btnListener("hapus"));
             Alternatif.getKriteria().addActionListener(new btnListener("kriteria"));
             Alternatif.getTbAlternatif().addMouseListener(new tabelListener());
 
-            Alternatif.getUbah().setEnabled(false);
             Alternatif.getHapus().setEnabled(false);
 
             Alternatif.getTbAlternatif().setModel(model.bacaTabel());
@@ -96,9 +94,6 @@ public class c_alternatif {
                     new c_alternatif("tambah_alternatif");
                     Alternatif.dispose();
                     break;
-                case "ubah":
-                    JOptionPane.showMessageDialog(Alternatif, "belum diimplementasi");
-                    break;
                 case "hapus":
                     int pilihan = JOptionPane.showConfirmDialog(Alternatif, "Yakin Dihapus?", "Hapus", JOptionPane.YES_NO_CANCEL_OPTION);
                     if (pilihan == JOptionPane.YES_OPTION) {
@@ -109,7 +104,6 @@ public class c_alternatif {
                             JOptionPane.showMessageDialog(Alternatif, "Gagal", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         Alternatif.getHapus().setEnabled(false);
-                        Alternatif.getUbah().setEnabled(false);
                     } else if (pilihan == JOptionPane.NO_OPTION) {
                         //ga ada
                     } else if (pilihan == JOptionPane.CANCEL_OPTION) {
@@ -169,7 +163,6 @@ public class c_alternatif {
         @Override
         public void mouseClicked(MouseEvent e) {
             baris = Alternatif.getTbAlternatif().getSelectedRow();
-            Alternatif.getUbah().setEnabled(true);
             Alternatif.getHapus().setEnabled(true);
         }
 

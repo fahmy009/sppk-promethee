@@ -20,6 +20,8 @@ public class tambahNilaiKriteria extends javax.swing.JFrame {
      */
     public tambahNilaiKriteria() {
         initComponents();
+        this.setLocationRelativeTo(this);
+
     }
 
     public JButton getKonfirmasi() {
@@ -37,8 +39,6 @@ public class tambahNilaiKriteria extends javax.swing.JFrame {
     public JTextField getNilai() {
         return nilai;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,61 +51,32 @@ public class tambahNilaiKriteria extends javax.swing.JFrame {
 
         nilai = new javax.swing.JTextField();
         labelAlternatif = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         labelKriteria = new javax.swing.JLabel();
         konfirmasi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        nilai.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
+        nilai.setBorder(null);
+        getContentPane().add(nilai, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 280, 50));
+
+        labelAlternatif.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
         labelAlternatif.setText("Label Alternatif");
+        getContentPane().add(labelAlternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        jLabel2.setText("Nilai");
-
+        labelKriteria.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
         labelKriteria.setText("Label Kriteria");
+        getContentPane().add(labelKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 210, -1));
 
-        konfirmasi.setText("konfirm");
+        konfirmasi.setBorder(null);
+        konfirmasi.setBorderPainted(false);
+        konfirmasi.setContentAreaFilled(false);
+        getContentPane().add(konfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 120, 50));
 
-        jLabel1.setText("Tambah Nilai");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(labelAlternatif))
-                        .addGap(97, 97, 97)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nilai)
-                            .addComponent(labelKriteria, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addComponent(konfirmasi))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAlternatif)
-                    .addComponent(labelKriteria))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(konfirmasi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tambahNilai.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -147,7 +118,6 @@ public class tambahNilaiKriteria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton konfirmasi;
     private javax.swing.JLabel labelAlternatif;
     private javax.swing.JLabel labelKriteria;

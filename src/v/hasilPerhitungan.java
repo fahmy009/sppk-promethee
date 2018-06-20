@@ -20,13 +20,13 @@ public class hasilPerhitungan extends javax.swing.JFrame {
      */
     public hasilPerhitungan() {
         initComponents();
+        this.setLocationRelativeTo(this);
+
     }
 
     public JLabel getNoKriteria() {
         return noKriteria;
     }
-    
-    
 
     public JButton getTotalIP() {
         return totalIP;
@@ -55,8 +55,6 @@ public class hasilPerhitungan extends javax.swing.JFrame {
     public JLabel getTipeKriteria() {
         return tipeKriteria;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,13 +73,15 @@ public class hasilPerhitungan extends javax.swing.JFrame {
         tipeKriteria = new javax.swing.JLabel();
         alternatif = new javax.swing.JButton();
         totalIP = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         noKriteria = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
+
+        tabelKriteria.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabelKriteria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -93,48 +93,48 @@ public class hasilPerhitungan extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelKriteria.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(tabelKriteria);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 106, 934, 442));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 930, 420));
 
+        kriteria.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
         kriteria.setText("Label Kriteria");
-        getContentPane().add(kriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 210, -1));
+        getContentPane().add(kriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 330, -1));
 
-        prev.setText("Kriteria Sebelumnya");
-        getContentPane().add(prev, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 11, -1, -1));
+        prev.setBorder(null);
+        prev.setBorderPainted(false);
+        prev.setContentAreaFilled(false);
+        getContentPane().add(prev, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 170, 60));
 
-        next.setText("Kriteria Selanjutnya");
-        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(755, 11, -1, -1));
+        next.setBorder(null);
+        next.setBorderPainted(false);
+        next.setContentAreaFilled(false);
+        getContentPane().add(next, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 170, 60));
 
-        tipeKriteria.setText("Label Tipe Kriteria");
-        getContentPane().add(tipeKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 150, -1));
+        tipeKriteria.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
+        tipeKriteria.setText("nom");
+        getContentPane().add(tipeKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 80, -1));
 
-        alternatif.setText("Alternatif");
-        alternatif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alternatifActionPerformed(evt);
-            }
-        });
-        getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 56, -1, -1));
+        alternatif.setBorder(null);
+        alternatif.setBorderPainted(false);
+        alternatif.setContentAreaFilled(false);
+        getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 170, 60));
 
-        totalIP.setText("Lihat Total IP");
-        getContentPane().add(totalIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, -1, -1));
+        totalIP.setBorder(null);
+        totalIP.setBorderPainted(false);
+        totalIP.setContentAreaFilled(false);
+        getContentPane().add(totalIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 170, 60));
 
-        jLabel1.setText("Tipe Preferensi :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
-
-        jLabel2.setText("Kriteria  - ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
+        noKriteria.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
         noKriteria.setText("Nomor Kriteria");
-        getContentPane().add(noKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 80, -1));
+        getContentPane().add(noKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 210, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Perhitungan.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void alternatifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternatifActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alternatifActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +173,6 @@ public class hasilPerhitungan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alternatif;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kriteria;

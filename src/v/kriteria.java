@@ -19,12 +19,14 @@ public class kriteria extends javax.swing.JFrame {
      */
     public kriteria() {
         initComponents();
+        this.setLocationRelativeTo(this);
+
     }
 
     public JButton getPerhitungan() {
         return perhitungan;
     }
-    
+
     public JButton getAlternatif() {
         return alternatif;
     }
@@ -41,12 +43,6 @@ public class kriteria extends javax.swing.JFrame {
         return tbKriteria;
     }
 
-    public JButton getUbah() {
-        return ubah;
-    }
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,15 +54,18 @@ public class kriteria extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbKriteria = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         tambah = new javax.swing.JButton();
-        ubah = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
         alternatif = new javax.swing.JButton();
         perhitungan = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
+
+        tbKriteria.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tbKriteria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -78,66 +77,33 @@ public class kriteria extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbKriteria.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(tbKriteria);
 
-        jLabel1.setText("Daftar Kriteria");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 870, 250));
 
-        tambah.setText("Tambah Kriteria");
+        tambah.setBorder(null);
+        tambah.setBorderPainted(false);
+        tambah.setContentAreaFilled(false);
+        getContentPane().add(tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 40));
 
-        ubah.setText("Ubah");
+        hapus.setBorder(null);
+        hapus.setBorderPainted(false);
+        hapus.setContentAreaFilled(false);
+        getContentPane().add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 130, 40));
 
-        hapus.setText("Hapus");
+        alternatif.setBorder(null);
+        alternatif.setBorderPainted(false);
+        alternatif.setContentAreaFilled(false);
+        getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 140, 40));
 
-        alternatif.setText("Alternatif");
+        perhitungan.setBorder(null);
+        perhitungan.setBorderPainted(false);
+        perhitungan.setContentAreaFilled(false);
+        getContentPane().add(perhitungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 150, 40));
 
-        perhitungan.setText("Lihat Perhitungan");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(alternatif)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tambah)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ubah)
-                        .addGap(18, 18, 18)
-                        .addComponent(hapus)
-                        .addGap(540, 540, 540)
-                        .addComponent(perhitungan)
-                        .addGap(21, 21, 21))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alternatif)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ubah)
-                            .addComponent(hapus)
-                            .addComponent(perhitungan))
-                        .addGap(5, 5, 5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tambah)
-                        .addContainerGap())))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Kriteria.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -185,6 +151,5 @@ public class kriteria extends javax.swing.JFrame {
     private javax.swing.JButton perhitungan;
     private javax.swing.JButton tambah;
     private javax.swing.JTable tbKriteria;
-    private javax.swing.JButton ubah;
     // End of variables declaration//GEN-END:variables
 }

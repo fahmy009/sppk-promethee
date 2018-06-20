@@ -6,6 +6,7 @@
 package v;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -19,13 +20,15 @@ public class tambahAlternatif extends javax.swing.JFrame {
      */
     public tambahAlternatif() {
         initComponents();
+        this.setLocationRelativeTo(this);
+
     }
 
     public JButton getBatal() {
         return batal;
     }
 
-    public JTextField getDeskripsi() {
+    public JTextArea getDeskripsi() {
         return deskripsi;
     }
 
@@ -36,8 +39,6 @@ public class tambahAlternatif extends javax.swing.JFrame {
     public JButton getSimpan() {
         return simpan;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,65 +49,43 @@ public class tambahAlternatif extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         nama = new javax.swing.JTextField();
-        deskripsi = new javax.swing.JTextField();
         simpan = new javax.swing.JButton();
         batal = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        deskripsi = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Tambah Alternatif");
+        nama.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
+        nama.setBorder(null);
+        getContentPane().add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 360, 50));
 
-        jLabel2.setText("Nama");
+        simpan.setBorder(null);
+        simpan.setBorderPainted(false);
+        simpan.setContentAreaFilled(false);
+        getContentPane().add(simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 130, 50));
 
-        jLabel3.setText("Deskripsi");
+        batal.setBorder(null);
+        batal.setBorderPainted(false);
+        batal.setContentAreaFilled(false);
+        getContentPane().add(batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 130, 50));
 
-        simpan.setText("Simpan");
+        jScrollPane1.setBorder(null);
 
-        batal.setText("Batal");
+        deskripsi.setColumns(20);
+        deskripsi.setFont(new java.awt.Font("One Stroke Script LET", 0, 36)); // NOI18N
+        deskripsi.setLineWrap(true);
+        deskripsi.setRows(5);
+        deskripsi.setBorder(null);
+        jScrollPane1.setViewportView(deskripsi);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(batal))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(simpan)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                        .addComponent(deskripsi)))
-                .addContainerGap(149, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(deskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(simpan)
-                    .addComponent(batal))
-                .addContainerGap(158, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 360, 190));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tambahAlternatif.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,10 +127,9 @@ public class tambahAlternatif extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton batal;
-    private javax.swing.JTextField deskripsi;
+    private javax.swing.JTextArea deskripsi;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nama;
     private javax.swing.JButton simpan;
     // End of variables declaration//GEN-END:variables

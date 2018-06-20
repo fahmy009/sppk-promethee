@@ -19,6 +19,7 @@ public class alternatif extends javax.swing.JFrame {
      */
     public alternatif() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     public JButton getHapus() {
@@ -36,10 +37,6 @@ public class alternatif extends javax.swing.JFrame {
     public JTable getTbAlternatif() {
         return tbAlternatif;
     }
-
-    public JButton getUbah() {
-        return ubah;
-    }
     
     
 
@@ -54,14 +51,17 @@ public class alternatif extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         tbAlternatif = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         tambah = new javax.swing.JButton();
-        ubah = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
         kriteria = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane3.setBorder(null);
+
+        tbAlternatif.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tbAlternatif.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -73,57 +73,28 @@ public class alternatif extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbAlternatif.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane3.setViewportView(tbAlternatif);
 
-        jLabel1.setText("Daftar Alternatif");
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 730, 250));
 
-        tambah.setText("Tambah");
+        tambah.setBorder(null);
+        tambah.setBorderPainted(false);
+        tambah.setContentAreaFilled(false);
+        getContentPane().add(tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 100, 40));
 
-        ubah.setText("Ubah");
+        hapus.setBorder(null);
+        hapus.setBorderPainted(false);
+        hapus.setContentAreaFilled(false);
+        getContentPane().add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 100, 40));
 
-        hapus.setText("Hapus");
+        kriteria.setBorder(null);
+        kriteria.setBorderPainted(false);
+        kriteria.setContentAreaFilled(false);
+        getContentPane().add(kriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 90, 40));
 
-        kriteria.setText("Kriteria");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(kriteria)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tambah)
-                                .addGap(18, 18, 18)
-                                .addComponent(ubah)
-                                .addGap(18, 18, 18)
-                                .addComponent(hapus)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(kriteria)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ubah)
-                    .addComponent(hapus)
-                    .addComponent(tambah))
-                .addGap(8, 8, 8))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/alternatif.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,6 +141,5 @@ public class alternatif extends javax.swing.JFrame {
     private javax.swing.JButton kriteria;
     private javax.swing.JButton tambah;
     private javax.swing.JTable tbAlternatif;
-    private javax.swing.JButton ubah;
     // End of variables declaration//GEN-END:variables
 }

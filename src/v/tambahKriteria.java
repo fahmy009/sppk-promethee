@@ -20,6 +20,8 @@ public class tambahKriteria extends javax.swing.JFrame {
      */
     public tambahKriteria() {
         initComponents();
+        this.setLocationRelativeTo(this);
+
     }
 
     public JButton getBatal() {
@@ -53,8 +55,6 @@ public class tambahKriteria extends javax.swing.JFrame {
     public JComboBox<String> getTipePref() {
         return tipePref;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,121 +65,57 @@ public class tambahKriteria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         namaKriteria = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         parameterP = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         parameterQ = new javax.swing.JTextField();
         minmaks = new javax.swing.JComboBox<>();
         tipePref = new javax.swing.JComboBox<>();
         batal = new javax.swing.JButton();
         simpan = new javax.swing.JButton();
         bobot = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Tambah Kriteria");
+        namaKriteria.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
+        getContentPane().add(namaKriteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 360, 50));
 
-        jLabel2.setText("Nama Kriteria");
+        parameterP.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
+        getContentPane().add(parameterP, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 360, 50));
 
-        jLabel3.setText("Bobot");
+        parameterQ.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
+        getContentPane().add(parameterQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 360, 50));
 
-        jLabel4.setText("Min Maks");
-
-        jLabel5.setText("Tipe Preferensi");
-
-        jLabel6.setText("P");
-
-        jLabel7.setText("Q");
-
+        minmaks.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
         minmaks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Salah Satu", "Minimasi", "Maksimasi" }));
+        minmaks.setBorder(null);
+        getContentPane().add(minmaks, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 360, 40));
 
+        tipePref.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
         tipePref.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Salah Satu", "1. Usual Criterion", "2. Quasi Criterion", "3. Linear Criterion", "4. Level Criterion", "5. Linear Criterion and Indiference" }));
+        getContentPane().add(tipePref, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 360, 40));
 
-        batal.setText("Batal");
+        batal.setBorder(null);
+        batal.setBorderPainted(false);
+        batal.setContentAreaFilled(false);
+        getContentPane().add(batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 130, 50));
 
-        simpan.setText("Simpan");
+        simpan.setBorder(null);
+        simpan.setBorderPainted(false);
+        simpan.setContentAreaFilled(false);
+        getContentPane().add(simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 140, 50));
 
+        bobot.setFont(new java.awt.Font("One Stroke Script LET", 0, 30)); // NOI18N
         bobot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Salah Satu", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        bobot.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bobotActionPerformed(evt);
-            }
-        });
+        bobot.setBorder(null);
+        getContentPane().add(bobot, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 360, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(batal))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(simpan)
-                    .addComponent(jLabel1)
-                    .addComponent(namaKriteria)
-                    .addComponent(parameterP)
-                    .addComponent(parameterQ)
-                    .addComponent(minmaks, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tipePref, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bobot, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(namaKriteria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(bobot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(minmaks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tipePref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(parameterP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(parameterQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(batal)
-                    .addComponent(simpan))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tambahKriteria.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bobotActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bobotActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,12 +156,6 @@ public class tambahKriteria extends javax.swing.JFrame {
     private javax.swing.JButton batal;
     private javax.swing.JComboBox<String> bobot;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JComboBox<String> minmaks;
     private javax.swing.JTextField namaKriteria;
     private javax.swing.JTextField parameterP;

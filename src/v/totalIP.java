@@ -19,13 +19,12 @@ public class totalIP extends javax.swing.JFrame {
      */
     public totalIP() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     public JButton getAlternatif() {
         return alternatif;
     }
-    
-    
 
     public JButton getHasilAkhir() {
         return hasilAkhir;
@@ -42,8 +41,6 @@ public class totalIP extends javax.swing.JFrame {
     public JTable getTbTotalIndeksPref() {
         return tbTotalIndeksPref;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,9 +58,14 @@ public class totalIP extends javax.swing.JFrame {
         hasilPerhitungan = new javax.swing.JButton();
         hasilAkhir = new javax.swing.JButton();
         alternatif = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
+
+        tbTotalIndeksPref.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tbTotalIndeksPref.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -75,8 +77,14 @@ public class totalIP extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbTotalIndeksPref.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(tbTotalIndeksPref);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 149, -1, 370));
+
+        jScrollPane2.setBorder(null);
+
+        tbEnterLeave.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tbEnterLeave.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -88,47 +96,28 @@ public class totalIP extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbEnterLeave.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane2.setViewportView(tbEnterLeave);
 
-        hasilPerhitungan.setText("Hasil Perhitungan");
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 149, 753, 370));
 
-        hasilAkhir.setText("Hasil Akhir");
+        hasilPerhitungan.setBorder(null);
+        hasilPerhitungan.setBorderPainted(false);
+        hasilPerhitungan.setContentAreaFilled(false);
+        getContentPane().add(hasilPerhitungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 340, 50));
 
-        alternatif.setText("Alternatif");
+        hasilAkhir.setBorder(null);
+        hasilAkhir.setBorderPainted(false);
+        hasilAkhir.setContentAreaFilled(false);
+        getContentPane().add(hasilAkhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 210, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(hasilPerhitungan)
-                        .addGap(18, 18, 18)
-                        .addComponent(alternatif)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(hasilAkhir)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hasilPerhitungan)
-                    .addComponent(hasilAkhir)
-                    .addComponent(alternatif))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        alternatif.setBorder(null);
+        alternatif.setBorderPainted(false);
+        alternatif.setContentAreaFilled(false);
+        getContentPane().add(alternatif, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 210, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/totalIP.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -172,6 +161,7 @@ public class totalIP extends javax.swing.JFrame {
     private javax.swing.JButton alternatif;
     private javax.swing.JButton hasilAkhir;
     private javax.swing.JButton hasilPerhitungan;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbEnterLeave;
